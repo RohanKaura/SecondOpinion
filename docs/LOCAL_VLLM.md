@@ -1,5 +1,8 @@
 # Local vLLM inference and the SJSU handoff
 
+For the short operational sequence, use [the HPC validation checklist](HPC_VALIDATION_CHECKLIST.md),
+including explicit scoring with `--llm local-canon` and the GPT-OSS pass gate before Qwen.
+
 The client work is ready to test against a real vLLM server. No SJSU login, scheduler
 submission, model-weight download, or GPU inference has been performed. All local
 HTTP tests use simulated model responses; replay parity does not establish real
@@ -293,7 +296,9 @@ References: [vLLM server and extra request parameters](https://docs.vllm.ai/en/s
 | `scripts/canonicalize_outputs.py` | Close input file properly; parsing/repair logic unchanged |
 | `tests/test_local_inference.py` | Offline adapter, resume, CLI and full baseline replay tests |
 | `tests/fixtures/gptoss_prompt_hashes.json` | Original-harness prompt/input hashes for the fixed subset |
+| `docs/HPC_VALIDATION_CHECKLIST.md` | Concise GPU validation sequence, canonicalized scoring commands and GPT-OSS pass gate |
 | `README.md`, `inference/README.md`, this guide | Usage and handoff documentation |
 
 Original baseline outputs/log/script and all source datasets are intact. Generated
-canonical copies are ignored by Git. Changes are local and uncommitted.
+canonical copies are ignored by Git. The implementation is committed locally on
+`local-vllm-harness`; nothing has been pushed.
