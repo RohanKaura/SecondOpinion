@@ -105,3 +105,6 @@ Older outputs and commands may still carry the labels "v3" (meaning v2) and "v0"
 ### Running the Benchmark
 
 For instructions on running inference and computing correctness metrics, refer to [`./inference/README.md`](./inference/README.md). For how the scenario log files were produced from the collected logs, see [`./dataset_extraction/README.md`](./dataset_extraction/README.md).
+
+For the generic `--llm local` vLLM backend, failure logs, resume support, GPT-OSS
+validation and Qwen3.8-27B preparation, see [the local inference/HPC guide](docs/LOCAL_VLLM.md).

@@ -1,0 +1,30 @@
+{
+  "model": "Qwen/Qwen3.8-27B",
+  "base_url": "http://127.0.0.1:8000/v1",
+  "dataset": "labgen",
+  "num_lines": 400,
+  "num_runs": 2,
+  "temp": 0,
+  "max_tokens": 16384,
+  "timeout": 600,
+  "max_retries": 2,
+  "extra_body": {"chat_template_kwargs": {"enable_thinking": true}},
+  "server": {
+    "max_model_len": 262144,
+    "tensor_parallel_size": 1,
+    "max_num_seqs": 1,
+    "extra_args": ["--reasoning-parser", "qwen3"]
+  },
+  "timezone": "America/Chicago",
+  "expected_chunks": 44,
+  "scenarios": [
+    ["classification", "attack-linux-scenario2"],
+    ["classification", "benign-scenario3"],
+    ["exfiltration", "exfiltration-scenario1"],
+    ["exfiltration", "benign-scenario3"],
+    ["lm", "lm-scenario2"],
+    ["lm", "benign-scenario3"],
+    ["persistence", "persistence-scenario1"],
+    ["persistence", "benign-scenario3"]
+  ]
+}

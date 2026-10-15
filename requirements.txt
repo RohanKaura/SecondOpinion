@@ -9,7 +9,7 @@ annotated-types==0.7.0
 anyio==4.12.1
 async-timeout==5.0.1
 attrs==25.4.0
-black==25.12.0
+black==25.11.0
 certifi==2026.1.4
 cffi==2.0.0
 charset-normalizer==3.4.4
@@ -100,3 +100,4 @@ yarl==1.22.0
 pandas==2.3.3
 pytz==2026.5
 tzdata==2026.5
+tiktoken==0.14.0

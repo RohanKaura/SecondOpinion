@@ -67,7 +67,8 @@ def collect_json(text):
 
 
 def process_file(src, dst):
-    raw = open(src, encoding="utf-8").read()
+    with open(src, encoding="utf-8") as source:
+        raw = source.read()
     headers = list(HEADER.finditer(raw))
     out, report = [], []
     out.append(raw[: headers[0].start()] if headers else raw)

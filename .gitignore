@@ -4,3 +4,5 @@ __pycache__/
 *.pth
 .DS_Store
 *-canonout/
+.venv/
+.run_state/

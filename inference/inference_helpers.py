@@ -1,4 +1,3 @@
-from llm_base import interact_gemini, interact_llama
 from helpers import helpers
 from tqdm import tqdm
 from openai import OpenAI
@@ -6,7 +5,7 @@ from dotenv import load_dotenv
 import os
 
 
-def call_model(llm, model, message, temp):
+def call_model(llm, model, message, temp, **local_options):
     """Send a single prompt to the requested LLM backend and return its text response.
 
     Routing is done on the explicit ``--llm`` value rather than on the model name, so
@@ -23,13 +22,25 @@ def call_model(llm, model, message, temp):
         return response.output_text
 
     if llm == "gemini":
+        from llm_base import interact_gemini
+
         return interact_gemini.call_gemini(model=model, prompt=message, temp=temp)
 
     if llm in ("llama", "kimi"):
+        from llm_base import interact_llama
+
         return interact_llama.call_llama(model=model, prompt=message, temp=temp, safety_off=True)
 
+    if llm == "local":
+        from llm_base.interact_local import LocalClient
+
+        with LocalClient(**local_options) as client:
+            reply = client.generate(model, message, temp)
+            reply.require_content()
+            return reply.content
+
     raise ValueError(
-        f"Unsupported --llm value: {llm!r}. Expected one of: gpt, gemini, llama, kimi."
+        f"Unsupported --llm value: {llm!r}. Expected one of: gpt, gemini, llama, kimi, local."
     )
 
 

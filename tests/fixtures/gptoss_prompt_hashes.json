@@ -1,0 +1,297 @@
+{
+  "source_commit": "97d31508e3e47d34657be94e1f4e20472aba15f3",
+  "scenarios": [
+    {
+      "task": "classification",
+      "scenario": "attack-linux-scenario2",
+      "input_name": "edge_2024-12-11T12-30-to-2024-12-11T12-31_attack-linux-scenario2.log",
+      "input_sha256": "d793c7ea6c6f2457aa75e50548c128377980f94056ee8aa6b654fd6e19bbfafa",
+      "prompt_template_sha256": "6f816bf7cb03ad46db6430f236e1fa2a82da9fea49eb17c3e408b613dbccb8fb",
+      "chunks": [
+        {
+          "start_index": 0,
+          "end_index": 67,
+          "message_sha256": "79708b9a6d8dfda7f6f72689f602b6afa99fc35d558480d9b6654dffc3044ec4"
+        }
+      ]
+    },
+    {
+      "task": "classification",
+      "scenario": "benign-scenario3",
+      "input_name": "edge_2024-12-11T12-16-to-2024-12-11T12-21_benign-scenario3.log",
+      "input_sha256": "5fdf6dcd797117419286bfbf8e21a8ac611d189450eee4a050d48e90a959a6fd",
+      "prompt_template_sha256": "6f816bf7cb03ad46db6430f236e1fa2a82da9fea49eb17c3e408b613dbccb8fb",
+      "chunks": [
+        {
+          "start_index": 0,
+          "end_index": 400,
+          "message_sha256": "8bfee91462f196bd9e1dd42dd44a3eb2975a31a83ae228e50592e530d1c91a23"
+        },
+        {
+          "start_index": 400,
+          "end_index": 800,
+          "message_sha256": "78990efa7c8b1e96e28622583a8cfb6cdff39ab8332f2762a1c5abd9ad54321a"
+        },
+        {
+          "start_index": 800,
+          "end_index": 1200,
+          "message_sha256": "2bd97babc93543e46352f849efb6f291bc60caa5da073545a3b0384d91045d0d"
+        },
+        {
+          "start_index": 1200,
+          "end_index": 1600,
+          "message_sha256": "b481989fa9d2ffe94ef43cb2e5aac64db19fda555e7ae22083acda66d8e0d073"
+        },
+        {
+          "start_index": 1600,
+          "end_index": 2000,
+          "message_sha256": "c447212a8dc959539dfbca28fd26651b492919e6d1710292bf75c347261cad80"
+        },
+        {
+          "start_index": 2000,
+          "end_index": 2119,
+          "message_sha256": "b47e8c01f8a8eb99b8b4b15ec6ea0f42a57fc86e900b24ede251ee5174e1acb4"
+        }
+      ]
+    },
+    {
+      "task": "exfiltration",
+      "scenario": "exfiltration-scenario1",
+      "input_name": "edge_2025-05-01T08-46-to-2025-05-01T08-48_exfiltration-scenario1.log",
+      "input_sha256": "f6de5ce50d8bb1532a5a04c7fd36998e7d8493ee4f8ea855cf395c933b37a6ba",
+      "prompt_template_sha256": "ad5b81ba3f7cc38224a4dd9a12f63de584213922d9666f038ab7326785597fb0",
+      "chunks": [
+        {
+          "start_index": 0,
+          "end_index": 12,
+          "message_sha256": "5b775720ea5caf6f4c5272b191ea74cec6cb6dcf9ff03b19af0ae1c4fae0d05f"
+        }
+      ]
+    },
+    {
+      "task": "exfiltration",
+      "scenario": "benign-scenario3",
+      "input_name": "edge_2024-12-11T12-16-to-2024-12-11T12-21_benign-scenario3.log",
+      "input_sha256": "5fdf6dcd797117419286bfbf8e21a8ac611d189450eee4a050d48e90a959a6fd",
+      "prompt_template_sha256": "ad5b81ba3f7cc38224a4dd9a12f63de584213922d9666f038ab7326785597fb0",
+      "chunks": [
+        {
+          "start_index": 0,
+          "end_index": 400,
+          "message_sha256": "c62386850e1e7479179e83dc85fa7bc378e932020cb4503baccbbcfbdc4127fc"
+        },
+        {
+          "start_index": 400,
+          "end_index": 800,
+          "message_sha256": "25fc657c890fdd27ab34d612175e67e56e2db24f40631d8fe8bf1759362bcddc"
+        },
+        {
+          "start_index": 800,
+          "end_index": 1200,
+          "message_sha256": "2cdff5c1cfd15e526dc24fbb2ff28ab7ead6c121aea2cd34109dd0866d3f6aa8"
+        },
+        {
+          "start_index": 1200,
+          "end_index": 1600,
+          "message_sha256": "326ba8bce7b92b3e4a221f310aaeaa7e71f733f49ccf35bc59e589d62ff0c5b3"
+        },
+        {
+          "start_index": 1600,
+          "end_index": 2000,
+          "message_sha256": "cbfb73f077015d3916091e7d666d5fb018d8ac935e2d1bb184925b3c16bfd735"
+        },
+        {
+          "start_index": 2000,
+          "end_index": 2119,
+          "message_sha256": "59d692bf5edb884a992750d6e850df2238469a01f4ac9582a9dfc670de355eab"
+        }
+      ]
+    },
+    {
+      "task": "lm",
+      "scenario": "lm-scenario2",
+      "input_name": "edge_2024-11-27T14-04-to-2024-11-27T14-10_lm-scenario2.log",
+      "input_sha256": "ac5b7c99d7a8181d379b3e52313f598509878428b830b52001a1460d6b62f7cf",
+      "prompt_template_sha256": "dc9c266d3b42444d766f1ed1626bfda7d8024afe7bb7dcb6aa7095ece18647c8",
+      "chunks": [
+        {
+          "start_index": 0,
+          "end_index": 400,
+          "message_sha256": "338dd7027affe26515e18b574788939c874a260c616eb3c9b98be7f0a9012317"
+        },
+        {
+          "start_index": 400,
+          "end_index": 800,
+          "message_sha256": "d3b5bcef82170d519f47159389896eef9407c773a4ee369c2057710e90f39ac0"
+        },
+        {
+          "start_index": 800,
+          "end_index": 1200,
+          "message_sha256": "4606fc0a56193c3607984054fcb9af704b76b06e5890fe802fcc9e4714554230"
+        },
+        {
+          "start_index": 1200,
+          "end_index": 1600,
+          "message_sha256": "d472e4ec377ca44f6f3db8af07592f3e05db1412b10d0e5546c79d1bb3e53453"
+        },
+        {
+          "start_index": 1600,
+          "end_index": 2000,
+          "message_sha256": "321d11d4514589f3edef06d9cf3c4af4a623464b5070b7c21a8c5f54a5406386"
+        },
+        {
+          "start_index": 2000,
+          "end_index": 2400,
+          "message_sha256": "0c1fc78e5867c6d499062fa2dc848627ce13ef7d00ba83f2b504ddbe8be272af"
+        },
+        {
+          "start_index": 2400,
+          "end_index": 2800,
+          "message_sha256": "ca6364b34dd28bb05a32cc147492255f97d9a331b48fc17e7e9d7f9f0ca7a125"
+        },
+        {
+          "start_index": 2800,
+          "end_index": 3200,
+          "message_sha256": "a98bab98ad9e608dc5a176e10c8e297460eb355e7a4af6f00ff48f22ba3a3a48"
+        },
+        {
+          "start_index": 3200,
+          "end_index": 3600,
+          "message_sha256": "e3f97f6f3aa9139f973d7c34182628b5b4e1e9afd4b0a7c3a5d16e07623f95aa"
+        },
+        {
+          "start_index": 3600,
+          "end_index": 4000,
+          "message_sha256": "388bb7af59a16a1a2a4317dd61f84b98114957fb7a4d4f00992f18231f04ea97"
+        },
+        {
+          "start_index": 4000,
+          "end_index": 4400,
+          "message_sha256": "15208394a070bd405057c7781f67a7cd8e5450dd8f7f4bf664f72cf9f4178d29"
+        },
+        {
+          "start_index": 4400,
+          "end_index": 4800,
+          "message_sha256": "53cdba0d85cbd6b351a524cc0bb7cbd7e0b57073cbaae686d65c036fda048c17"
+        },
+        {
+          "start_index": 4800,
+          "end_index": 5200,
+          "message_sha256": "220977fd64637f3c269e22c90afed25f8ed776ff619f0b198deee0219fe2a439"
+        },
+        {
+          "start_index": 5200,
+          "end_index": 5600,
+          "message_sha256": "e2bb725c2efdde3107103aa2298661067a5c74653711ac7417729d5ed3f25ec7"
+        },
+        {
+          "start_index": 5600,
+          "end_index": 6000,
+          "message_sha256": "d81bc6e8c4d242fee8c28ee2eb73d674783a17999a266ee92e558300dff29725"
+        },
+        {
+          "start_index": 6000,
+          "end_index": 6400,
+          "message_sha256": "0e9a552fea9218dae171a979b6ae15c7b2b181504862a14a6a508a3df321bdc3"
+        },
+        {
+          "start_index": 6400,
+          "end_index": 6568,
+          "message_sha256": "65772d850c6382e701ec6dd25306d1faf9667b17a42bb4cb607117aa4ee50deb"
+        }
+      ]
+    },
+    {
+      "task": "lm",
+      "scenario": "benign-scenario3",
+      "input_name": "edge_2024-12-11T12-16-to-2024-12-11T12-21_benign-scenario3.log",
+      "input_sha256": "5fdf6dcd797117419286bfbf8e21a8ac611d189450eee4a050d48e90a959a6fd",
+      "prompt_template_sha256": "05b84e619b9db5acd588ad071beef9f521085a9d25c6233b8a0c2d37b4981b32",
+      "chunks": [
+        {
+          "start_index": 0,
+          "end_index": 400,
+          "message_sha256": "4880622606520874f68732ffe6272188f49e01f970d9e28eb8bbbb702e6c666d"
+        },
+        {
+          "start_index": 400,
+          "end_index": 800,
+          "message_sha256": "f9d475d64e57d81cbf5880575b89a7a9801de41ffb80fe8f2ed3002d60a30be2"
+        },
+        {
+          "start_index": 800,
+          "end_index": 1200,
+          "message_sha256": "f3e4b2f87d98aae9f9099a442cd62aa89f921ddaca608cb820aa4ebfcc008b1a"
+        },
+        {
+          "start_index": 1200,
+          "end_index": 1600,
+          "message_sha256": "3bf10d7a8916a4e080c8eba0b2f3ffdb9b1fd595a01d1bce535d7171f0853bcc"
+        },
+        {
+          "start_index": 1600,
+          "end_index": 2000,
+          "message_sha256": "5707b89b0f8037c0dbfe18f727449fe98023a80b7e6998ffc3f533bc77ea6d0c"
+        },
+        {
+          "start_index": 2000,
+          "end_index": 2119,
+          "message_sha256": "1a4c2eddb527c3106f344b3a75735abe649b586f9173a1a37456e93f61d13687"
+        }
+      ]
+    },
+    {
+      "task": "persistence",
+      "scenario": "persistence-scenario1",
+      "input_name": "edge_2024-11-16T02-00-to-2024-11-16T02-05_persistence-scenario1.log",
+      "input_sha256": "723151e159efa7e26cec7059d7af5af03b4eab3f29dbcd0bfa282182edda4108",
+      "prompt_template_sha256": "07697d8e74f25397bda9e5c21f50cc308c18af9ba3accb1707b6b25c8de44c9c",
+      "chunks": [
+        {
+          "start_index": 0,
+          "end_index": 139,
+          "message_sha256": "6c50601c9d56d2f093dab4f43b7d90957085431026a64c11d43a4565cd1b8766"
+        }
+      ]
+    },
+    {
+      "task": "persistence",
+      "scenario": "benign-scenario3",
+      "input_name": "edge_2024-12-11T12-16-to-2024-12-11T12-21_benign-scenario3.log",
+      "input_sha256": "5fdf6dcd797117419286bfbf8e21a8ac611d189450eee4a050d48e90a959a6fd",
+      "prompt_template_sha256": "07697d8e74f25397bda9e5c21f50cc308c18af9ba3accb1707b6b25c8de44c9c",
+      "chunks": [
+        {
+          "start_index": 0,
+          "end_index": 400,
+          "message_sha256": "a7761c5b1525f0095e4818cf0d66a98194ae0427ecc9e4dab0d882eab91dfa8c"
+        },
+        {
+          "start_index": 400,
+          "end_index": 800,
+          "message_sha256": "036004441bd8ec897310751b2c70a11f34931274ff4f1dffd952f817cdea6392"
+        },
+        {
+          "start_index": 800,
+          "end_index": 1200,
+          "message_sha256": "a0618e855c2a48c5d49a7dba84dcc23c5a96a5ea09b7315c5f7379d9f9b36900"
+        },
+        {
+          "start_index": 1200,
+          "end_index": 1600,
+          "message_sha256": "a1c4a85d6648de85ae7b08c3e96ab73bc5839f1921b4156cf3f9e582eaf55980"
+        },
+        {
+          "start_index": 1600,
+          "end_index": 2000,
+          "message_sha256": "9f766f1edb49d33103f02dd7a614602bb77c1be4d22c7539199dfc09811f6637"
+        },
+        {
+          "start_index": 2000,
+          "end_index": 2119,
+          "message_sha256": "49a78a220b3d2d25ad69bc07a532b4892a0a791d96d27b4026758536a2f9a99b"
+        }
+      ]
+    }
+  ]
+}

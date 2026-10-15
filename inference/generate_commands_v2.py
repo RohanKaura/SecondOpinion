@@ -2,6 +2,9 @@
 import importlib
 import sys
 import argparse
+import json
+import shlex
+from llm_base.interact_local import add_local_arguments
 
 # Dynamically import the benchmark_scenarios module
 benchmark_scenarios = importlib.import_module("benchmark_scenarios")
@@ -12,9 +15,14 @@ def main():
     parser.add_argument('--task', required=True, help='Task name')
     parser.add_argument('--rep', required=True, choices=['raw', 'edge'], help='Representation (raw/edge)')
     parser.add_argument('--type', required=True, help='Type (benign/attack)')
-    parser.add_argument('--llm', required=True, help='LLM name')
+    parser.add_argument('--llm', required=True, choices=['gpt', 'gemini', 'llama', 'kimi', 'local'], help='LLM backend')
     parser.add_argument('--model', required=True, help='Model name')
-    parser.add_argument('--num_lines', required=False, default=None, help='Number of lines of logs for running inferences.')
+    parser.add_argument('--num_lines', type=int, required=False, default=None, help='Number of lines of logs for running inferences.')
+    parser.add_argument('--num_runs', type=int, default=1)
+    parser.add_argument('--temp', type=float, default=None)
+    parser.add_argument('--resume', action='store_true')
+    parser.add_argument('--dry_run', action='store_true', help='Emit inference commands that only print their plans')
+    add_local_arguments(parser)
     args = parser.parse_args()
 
     dataset = args.dataset
@@ -24,21 +32,13 @@ def main():
     llm = args.llm
     model = args.model
 
-    assert args.llm in {"gpt", "gemini", "llama", "kimi"}, "undefined --llm value"
-
     allowed_tasks = {"lm", "persistence", "exfiltration", "classification"}
     if task not in allowed_tasks:
         print(f"Error: task must be one of {allowed_tasks}. Got '{task}' instead.")
         sys.exit(1)
 
-    if llm == "gemini":
-        assert "gemini" in model, "Incompatable LLM and model"
-    if llm == "gpt":
-        assert "gpt" in model, "Incompatable LLM and model"
-    if llm == "llama":
-        assert "llama" in model.lower(), "Incompatable LLM and model"
-    if llm == "kimi":
-        assert "kimi" in model.lower(), "Incompatable LLM and model"
+    # Provider selection is explicit. Model names need not contain the provider name
+    # (Together's GPT-OSS baseline is one example).
 
     # Construct the variable name
     var_name = f"{dataset}_{task}_{rep}_{typ}"
@@ -71,9 +71,28 @@ def main():
     else:
         temp = 0  # Default to 0 if not specified
 
+    if args.temp is not None:
+        temp = args.temp
+    if num_lines < 1 or args.num_runs < 1:
+        parser.error('num_lines and num_runs must be positive')
+
     for log_fname in scenario_list:
         # All models and tasks share the single v2 inference script; --llm/--model select the model.
-        print(f'python task-query-v2.py --dataset "{dataset}" --log_fpath "./{dataset}_expt_dataset/task_{task}/{rep}/input/{log_fname}" --num_lines {num_lines} --prompt_key "{prompt_key}" --num_runs 1 --temp {temp} --llm "{llm}" --model "{model}" --task "{task}"')
+        command = ['python', 'task-query-v2.py', '--dataset', dataset,
+                   '--log_fpath', f'./{dataset}_expt_dataset/task_{task}/{rep}/input/{log_fname}',
+                   '--num_lines', str(num_lines), '--prompt_key', prompt_key,
+                   '--num_runs', str(args.num_runs), '--temp', str(temp),
+                   '--llm', llm, '--model', model, '--task', task]
+        if llm == 'local':
+            if args.base_url:
+                command += ['--base_url', args.base_url]
+            command += ['--max_tokens', str(args.max_tokens), '--timeout', str(args.timeout),
+                        '--max_retries', str(args.max_retries), '--extra_body', json.dumps(args.extra_body)]
+        if args.resume:
+            command.append('--resume')
+        if args.dry_run:
+            command.append('--dry_run')
+        print(shlex.join(command))
         print()
 
 

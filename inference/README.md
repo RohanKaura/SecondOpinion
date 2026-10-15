@@ -1,5 +1,13 @@
 ## Running LLM Inference
 
+V2 also supports `--llm local` for any chat model served by a localhost vLLM server.
+See [the local inference/HPC guide](../docs/LOCAL_VLLM.md) for configurable request
+settings, per-call logs, resume support, and the fixed GPT-OSS validation workflow.
+V2 now checkpoints each response and publishes its transcript when a scenario is
+complete; rerun interrupted jobs with `--resume`. Existing text-only outputs cannot
+be resumed safely. Prompt templates, chunk boundaries, transcript format and scoring
+logic remain compatible with the original baseline.
+
 To evaluate the performance of a given LLM on the benchmark data, you will run an inference script corresponding to your chosen LLM. Make sure to navigate to the `./inference/` directory (relative to the repository root) before running these commands; all paths in the commands below are relative to it.
 
 ### General Command Structure
@@ -15,7 +23,7 @@ You must set the following flags for each inference script that you run:
 
 * `--dataset`: The benchmark dataset to run LLM inference on. Valid values: "labgen" or "optc".
 * `--task`: The type of investigation task for the chosen LLM to conduct on the data. Valid values: "classification", "lm", "persistence", or "exfiltration".
-* `--llm`: The LLM back end. Valid values: "gpt" (OpenAI), "gemini" (Vertex AI), "llama" or "kimi" (both served through Together AI). This value also names the directory the outputs are written to (`<llm>out`).
+* `--llm`: The LLM back end. Valid values: "gpt" (OpenAI), "gemini" (Vertex AI), "llama" or "kimi" (both served through Together AI), and "local" (v2, localhost vLLM). This value also names the directory the outputs are written to (`<llm>out`).
 * `--model`: The specific model of the LLM being used. The paper's models are "gpt-5-mini", "gpt-5", "gemini-2.5-flash", "gemini-2.5-pro", and "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8" (with `--llm "llama"`); "moonshotai/kimi-k2.5" (with `--llm "kimi"`) is the current substitute for the deprecated Llama model.
 * `--log_fpath`: The path to the input log file you want to run LLM inference on. (These are located in the dataset folders `./labgen_expt_dataset` and `./optc_expt_dataset`. For example, `./labgen_expt_dataset/task_lm/edge/input/` contains lab generated log files that contain lateral movement scenarios represented with a node/edge format).
 * `--num_lines`: The number of log lines sent to the LLM in one query; the whole file is processed in consecutive chunks of this size (use `--start_lno`/`--end_lno` to restrict the range). The paper used chunks of 400 lines for the "edge" representation and 1,000 lines for the "raw" representation, which come to roughly 100,000-128,000 tokens.
@@ -26,9 +34,9 @@ You must set the following flags for each inference script that you run:
 
 #### Where the Outputs Go
 
-Each run appends the LLM's answer for every chunk of `--num_lines` lines to a single file,
+V2 checkpoints each response and, when a scenario is complete, publishes all its answers in a single file,
 `./<dataset>_expt_dataset/task_<task>/<rep>/output/<llm>out/<prompt_type>_<prompt_version>_<model>_<scenario file name>_<date>_temp-<temp>_numruns-<num_runs>.txt`,
-and records the exact prompt that was sent, under your `--prompt_key`, in `./<dataset>_expt_dataset/task_<task>/benchmark_<llm>_prompts.jsonl`.
+and saves the prompt template under `--prompt_key` in `./<dataset>_expt_dataset/task_<task>/benchmark_<llm>_prompts.jsonl`. That legacy archive retains the first template per key; the v2 checkpoint also records the actual template for each scenario. Incomplete transcripts and per-call logs remain in the output folder's `.run_state/` directory.
 
 ### Example Commands by Model
 
